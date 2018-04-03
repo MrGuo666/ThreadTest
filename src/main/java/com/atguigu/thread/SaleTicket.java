@@ -3,6 +3,31 @@ package com.atguigu.thread;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+class Ticket {
+	private int number = 30;
+	private Lock lock = new ReentrantLock();
+	
+	public void sale() {
+		lock.lock();
+		try {
+			if(number > 0) {
+				System.out.println(Thread.currentThread().getName() + "卖出了第" + (number--) + "张票,还剩下" + number + "张票");
+			}
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			lock.unlock();
+		}
+	}
+	/*
+	public synchronized void sale() {
+		while (number > 0) {
+			System.out.println(Thread.currentThread().getName() + "卖出了第" + (number--) + "张票,还剩下" + number + "张票");
+		}
+	}
+	*/
+}
+
 /**
  * @Description:卖票程序复习线程知识 , 三个售票员 卖出 30张票
  * @author Lenovo
@@ -49,27 +74,3 @@ public class SaleTicket {
 	}
 }
 
-class Ticket {
-	private int number = 30;
-	private Lock lock = new ReentrantLock();
-	
-	public void sale() {
-		lock.lock();
-		try {
-			if(number > 0) {
-				System.out.println(Thread.currentThread().getName() + "卖出了第" + (number--) + "张票,还剩下" + number + "张票");
-			}
-		} catch (Exception e) {
-			e.getStackTrace();
-		} finally {
-			lock.unlock();
-		}
-	}
-	/*
-	public synchronized void sale() {
-		while (number > 0) {
-			System.out.println(Thread.currentThread().getName() + "卖出了第" + (number--) + "张票,还剩下" + number + "张票");
-		}
-	}
-	*/
-}

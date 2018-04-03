@@ -17,7 +17,7 @@ interface Foo{
 }
 
 /**
- * @deprecated Lambda Express-----> 函数式编程
+ * @Description Lambda Express-----> 函数式编程
  * @author Lenovo
  * @date 2018年4月3日
  * 1	(形参列表) -> {方法实现}
